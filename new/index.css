@@ -67,8 +67,9 @@ hr {
   color: #595a01;
 }
 
-.result .heading .posttitle {
-  margin: -1rem;
+h3 {
+  margin-bottom: -0.5rem;
+  font-size: 1rem;
 }
 
 .true {
@@ -120,5 +121,5 @@ h1 {
 .desc2 {
   color: #000000aa;
   font-family: "Inter", serif;
-
+  font-weight: 300;
 }
