@@ -20,49 +20,86 @@ interface ArticleData {
   url: string;
 }
 
-//temp info
-const fake = false;
-const arr = [
-  {
-    title: "Biden walks into flames unknowingly",
-    match: 74,
-    url: "https://www.nytimes.com/",
-    site: "The Washington Post",
-    desc: "Biden accidentally walks into the flames while trying to recover his dog.",
-  },
-  {
-    title:
-      "What!? The President of the United States walks into flames unknowingly",
-    match: 44,
-    url: "https://www.nytimes.com/",
-    site: "New York Times",
-    desc: "Biden accidentally walks into the flames while trying to recover his dog.",
-  },
-  {
-    title:
-      "What!? The President of the United States walks into flames unknowingly",
-    match: 14,
-    url: "https://www.nytimes.com/",
-    site: "New York Times",
-    desc: "Biden accidentally walks into the flames while trying to recover his dog.",
-  },
-];
+interface NLPData {
+  corroboration?: any;
+  rating?: any;
+  classification?: any;
+}
 
 export default function Article() {
   const searchParams = useSearchParams();
   const url = searchParams.get("url");
   const [loading, setLoading] = useState(false);
   const [article, setArticle] = useState<ArticleData | null>(null);
+  const [nlpData, setNlpData] = useState<NLPData>({});
 
   useEffect(() => {
-    if (url) {
-      fetch(`/api/article?url=${encodeURIComponent(url)}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setArticle(data);
-          setLoading(false);
+    async function fetchData() {
+      if (url) {
+        // Fetch article
+        const articleRes = await fetch(
+          `/api/article?url=${encodeURIComponent(url)}`
+        );
+        const articleData = await articleRes.json();
+        setArticle(articleData);
+
+        // Fetch NLP data
+        const [corrobRes, ratingRes, classifyRes] = await Promise.all([
+          fetch("http://132.145.162.209/api/nlp/corroborate", {
+            method: "POST",
+            headers: {
+              accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            mode: "cors", // Add CORS mode
+            body: JSON.stringify({
+              content: articleData.content,
+              title: articleData.title,
+            }),
+          }),
+          fetch(
+            `http://132.145.162.209/api/nlp/rating?input=${encodeURIComponent(
+              articleData.content
+            )}`,
+            {
+              method: "POST",
+              headers: {
+                accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              mode: "cors",
+            }
+          ),
+          fetch("http://132.145.162.209/api/nlp/classify", {
+            method: "POST",
+            headers: {
+              accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            mode: "cors",
+            body: JSON.stringify({
+              content: articleData.content,
+              title: articleData.title,
+            }),
+          }),
+        ]);
+
+        const [corrobData, ratingData, classifyData] = await Promise.all([
+          corrobRes.json(),
+          ratingRes.json(),
+          classifyRes.json(),
+        ]);
+
+        setNlpData({
+          corroboration: corrobData,
+          rating: ratingData,
+          classification: classifyData,
         });
+        setLoading(false);
+      }
     }
+
+    fetchData();
   }, [url]);
 
   return (
