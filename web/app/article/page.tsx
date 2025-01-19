@@ -58,9 +58,10 @@ const arr = [
 export default function Article() {
   const searchParams = useSearchParams();
   const url = searchParams.get("url");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [article, setArticle] = useState<ArticleData | null>(null);
   const [nlpData, setNlpData] = useState<NLPData>({});
+  const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -80,7 +81,7 @@ export default function Article() {
               accept: "application/json",
               "Content-Type": "application/json",
             },
-            mode: "cors", // Add CORS mode
+            mode: "cors",
             body: JSON.stringify({
               content: articleData.content,
               title: articleData.title,
@@ -124,7 +125,12 @@ export default function Article() {
           rating: ratingData,
           classification: classifyData,
         });
-        setLoading(false);
+
+        // Add delay before showing content
+        setTimeout(() => {
+          setLoading(false);
+          setShowContent(true);
+        }, 2000); // 2 second delay
       }
     }
 
@@ -134,8 +140,8 @@ export default function Article() {
   return (
     <main className="flex min-h-screen items-center justify-center flex-col p-4">
       <div className="flex flex-col items-center gap-8">
-        <div className="flex flex-col items-center gap-6">
-          <h1 className="font-apple-garamond font-light tracking-tighter text-6xl">
+        <div className="flex flex-col items-center gap-4">
+          <h1 className="font-apple-garamond font-light text-6xl">
             fausses nouvelles
           </h1>
           {loading && (
@@ -148,7 +154,7 @@ export default function Article() {
           )}
         </div>
 
-        {article && (
+        {article && showContent && (
           <div className="grid grid-cols-2 space-x-8 space-y-1 w-[52rem]">
             <div className="row-span-8">
               <motion.div
