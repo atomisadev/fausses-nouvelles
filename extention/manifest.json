@@ -1,0 +1,16 @@
+{
+    "manifest_version": 2,
+    "name": "Fausses Nouvelles",
+    "version": "1.0",
+    "description": "fake news",
+    "permissions": [
+        "tabs",
+        "activeTab"
+    ],
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "browser_action": {
+        "default_title": "Redirect"
+    }
+}
