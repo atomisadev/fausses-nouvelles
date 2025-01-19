@@ -4,13 +4,15 @@ import * as cheerio from "cheerio";
 
 const COHERE_API_URL = "https://api.cohere.ai/v1/chat";
 
-export async function POST(request: Request) {
+export async function GET(request: Request) {
   try {
-    const { url } = await request.json();
+    // Get URL from search params
+    const { searchParams } = new URL(request.url);
+    const url = searchParams.get("url");
 
-    if (!url || typeof url !== "string") {
+    if (!url) {
       return NextResponse.json(
-        { error: "Invalid URL provided" },
+        { error: "URL parameter is required" },
         { status: 400 }
       );
     }
@@ -26,11 +28,11 @@ export async function POST(request: Request) {
 
     // Extract main image
     const mainImage =
-      $('meta[property="og:image"]').attr("content") || // Try Open Graph image first
-      $('meta[name="twitter:image"]').attr("content") || // Then Twitter image
-      $("article img").first().attr("src") || // Then first image in article
-      $("main img").first().attr("src") || // Then first image in main
-      $("body img").first().attr("src"); // Finally any image on page
+      $('meta[property="og:image"]').attr("content") ||
+      $('meta[name="twitter:image"]').attr("content") ||
+      $("article img").first().attr("src") ||
+      $("main img").first().attr("src") ||
+      $("body img").first().attr("src");
 
     const siteName =
       $('meta[property="og:site_name"]').attr("content") ||
