@@ -1,16 +1,16 @@
 @font-face {
-  font-family: 'AppleGaramond';
-  src: url('fonts/AppleGaramond.ttf') format('truetype');
+  font-family: "AppleGaramond";
+  src: url("fonts/AppleGaramond.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
-  }
+}
 
 body {
-  max-width: 1600px;
-  min-width: 420px;
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
+  padding: 0;
   font-family: "AppleGaramond", sans-serif;
-  
+  overflow-x: hidden;
 }
 
 .card {
@@ -26,10 +26,10 @@ body {
 }
 
 .result {
-  background: rgba(0,0,0,0.02);
+  background: rgba(0, 0, 0, 0.02);
   padding: 0.8rem;
   border-radius: 9px;
-  border: 1px rgba(0,0,0,0.04) solid;
+  border: 1px rgba(0, 0, 0, 0.04) solid;
   margin: 0.5rem 0rem;
   font-family: "Inter", serif;
 }
@@ -52,7 +52,7 @@ hr {
 
 .result .heading .goodmatch {
   padding: 0.2rem 0.4rem;
-  background-color: rgba(0,255,115,0.08);
+  background-color: rgba(0, 255, 115, 0.08);
   color: #015a19;
 }
 .result .heading .badmatch {
@@ -80,9 +80,8 @@ h3 {
   padding: 0.2rem 0.5rem;
   border-radius: 9px;
   text-align: center;
-  border: 1px #5a170154 solid;  
+  border: 1px #5a170154 solid;
   font-family: "Inter", serif;
-
 }
 
 a {
@@ -91,35 +90,70 @@ a {
 }
 
 .false {
-  background: rgba(0,255,115,0.08);
+  background: rgba(0, 255, 115, 0.08);
   color: #015a19;
   font-size: 1rem;
   font-weight: 700;
-  padding: 0.2rem 0.5rem;
+  padding: 1rem 1.5rem;
   border-radius: 9px;
   text-align: center;
-  border: 1px rgba(2,110,51,0.11) solid;
-  font-family: "Inter", serif;
+  border: 1px rgba(2, 110, 51, 0.11) solid;
+  font-family: "Inter", sans-serif;
 }
 
 h1 {
-  font-size: 1.5rem;
-  color:#000;
-  font-weight: 400;
-  margin-bottom: -0.4rem;
+  font-size: 2rem;
+  color: #000;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
 .desc {
   color: #5f5f5f;
   font-style: italic;
-  font-size: 0.8rem;
-  font-family: "Inter", serif;
-  font-weight: 200;
-
+  font-size: 0.9rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
 }
 
 .desc2 {
   color: #000000aa;
-  font-family: "Inter", serif;
-  font-weight: 300;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.card {
+  padding: 1.5rem 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.card:first-child {
+  margin-bottom: 1rem;
+}
+
+#fausses-nouvelles-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  font-family: "AppleGaramond", sans-serif;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  min-width: 300px;
+  max-width: 90vw;
+}
+
+#fausses-nouvelles-container .drag-handle {
+  cursor: move;
+  padding: 10px;
+  /* background: #f5f5f5; */
+  border-radius: 10px 10px 0 0;
+  user-select: none;
 }

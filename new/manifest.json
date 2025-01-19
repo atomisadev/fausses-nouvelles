@@ -1,11 +1,19 @@
 {
-  "name": "fausses nouvelles",
+  "name": "Fausses Nouvelles",
   "description": "fake news",
   "version": "1.0",
   "manifest_version": 3,
   "permissions": ["activeTab", "scripting"],
   "action": {
-    "default_popup": "extension.html",
     "default_icon": "logo.png"
-  }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["readability.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }
