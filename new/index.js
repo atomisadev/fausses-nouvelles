@@ -38,14 +38,15 @@ window.addEventListener("load", () => {
       const resultDiv = document.createElement("div");
       resultDiv.className = "result";
       resultDiv.innerHTML = `
+      <a href="${item.url}" target="blank">
         <span class="heading">
           <span class="logo"></span>
           <span class="site">${item.site}</span>
           ${item.match > 70 ? `<span class="goodmatch">${item.match}% match</span>` : item.match < 40 ? `<span class="badmatch">${item.match}% match</span>` : `<span class="midmatch">${item.match}% match</span>`}
-          <a href="${item.url}"></a>
         </span>
         <h3 class="posttitle">${item.title}</h3>
         <p class="desc2">${item.desc}</p>
+      </a>
       `;
       results.appendChild(resultDiv);
     });
