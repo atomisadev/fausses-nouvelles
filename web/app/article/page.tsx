@@ -57,7 +57,7 @@ const arr = [
 export default function Article() {
   const searchParams = useSearchParams();
   const url = searchParams.get("url");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [article, setArticle] = useState<ArticleData | null>(null);
   const [nlpData, setNlpData] = useState<NLPData>({});
 
@@ -210,6 +210,7 @@ export default function Article() {
                 corroborated results
               </h1>
               <div>
+                <div>{nlpData.corroboration}</div>
                 <div className="overflow-scroll	h-64 overflow-x-hidden">
                   {arr.map((item, index) => (
                     <div key={index} className="bg-[rgba(0,0,0,0.02)] rounded-lg px-8 py-4 my-4 border-2 border-[rgba(0,0,0,0.04)]" >
