@@ -26,6 +26,34 @@ interface NLPData {
   classification?: any;
 }
 
+//temp info
+const fake = false;
+const arr = [
+  {
+    title: "Biden walks into flames unknowingly",
+    match: 74,
+    url: "https://www.nytimes.com/",
+    site: "The Washington Post",
+    desc: "Biden accidentally walks into the flames while trying to recover his dog.",
+  },
+  {
+    title:
+      "What!? The President of the United States walks into flames unknowingly",
+    match: 44,
+    url: "https://www.nytimes.com/",
+    site: "New York Times",
+    desc: "Biden accidentally walks into the flames while trying to recover his dog.",
+  },
+  {
+    title:
+      "What!? The President of the United States walks into flames unknowingly",
+    match: 14,
+    url: "https://www.nytimes.com/",
+    site: "New York Times",
+    desc: "Biden accidentally walks into the flames while trying to recover his dog.",
+  },
+];
+
 export default function Article() {
   const searchParams = useSearchParams();
   const url = searchParams.get("url");
