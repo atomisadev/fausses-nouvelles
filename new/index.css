@@ -1,0 +1,123 @@
+@font-face {
+  font-family: 'AppleGaramond';
+  src: url('fonts/AppleGaramond.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  }
+
+body {
+  max-width: 1600px;
+  min-width: 420px;
+  margin: 0 auto;
+  font-family: "AppleGaramond", sans-serif;
+  
+}
+
+.card {
+  padding: 0.6rem 2rem;
+}
+
+.title {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 0.6rem 1rem;
+  font-weight: 400;
+}
+
+.result {
+  background: rgba(0,0,0,0.02);
+  padding: 0.8rem;
+  border-radius: 9px;
+  border: 1px rgba(0,0,0,0.04) solid;
+  margin: 0.5rem 0rem;
+  font-family: "Inter", serif;
+}
+
+.result .heading {
+  display: flex;
+  justify-content: left;
+  margin: -0.2rem;
+}
+
+.result .heading .site {
+  padding: 0.2rem 0.4rem;
+}
+
+hr {
+  background-color: #eaeaea;
+  border: none;
+  height: 1px;
+}
+
+.result .heading .goodmatch {
+  padding: 0.2rem 0.4rem;
+  background-color: rgba(0,255,115,0.08);
+  color: #015a19;
+}
+.result .heading .badmatch {
+  padding: 0.2rem 0.4rem;
+  background-color: #f4735c0f;
+  color: #5a1701;
+  border-radius: 9px;
+}
+.result .heading .midmatch {
+  padding: 0.2rem 0.4rem;
+  background-color: #e1ff000f;
+  color: #595a01;
+}
+
+.result .heading .posttitle {
+  margin: -1rem;
+}
+
+.true {
+  background-color: #f4735c0f;
+  color: #5a1701;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 9px;
+  text-align: center;
+  border: 1px #5a170154 solid;  
+  font-family: "Inter", serif;
+
+}
+
+a {
+  color: inherit;
+}
+
+.false {
+  background: rgba(0,255,115,0.08);
+  color: #015a19;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 9px;
+  text-align: center;
+  border: 1px rgba(2,110,51,0.11) solid;
+  font-family: "Inter", serif;
+}
+
+h1 {
+  font-size: 1.5rem;
+  color:#000;
+  font-weight: 400;
+  margin-bottom: -0.4rem;
+}
+
+.desc {
+  color: #5f5f5f;
+  font-style: italic;
+  font-size: 0.8rem;
+  font-family: "Inter", serif;
+  font-weight: 200;
+
+}
+
+.desc2 {
+  color: #000000aa;
+  font-family: "Inter", serif;
+
+}
